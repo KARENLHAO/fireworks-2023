@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="assets/css/app.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap"
-      rel="stylesheet"
-    />
-    <title id="title">祝你 2025 新年快乐！</title>
-  </head>
-  <body
-    class="select-none w-screen h-screen overflow-hidden"
-    ondragstart="return false;"
-  >
-    <div
-      class="relative main z-50 flex flex-col justify-center items-center"
-      style="background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(3.2px)"
-      id="pre"
-    >
-      <div class="words text-white mb-6">点击按钮，查看 2025 年新年祝福</div>
-      <button onclick="startFireworks()" id="start-button">
-        V I E W
-        <div id="clip">
-          <div id="leftTop" class="corner"></div>
-          <div id="rightBottom" class="corner"></div>
-          <div id="rightTop" class="corner"></div>
-          <div id="leftBottom" class="corner"></div>
-        </div>
-        <span id="rightArrow" class="arrow"></span>
-        <span id="leftArrow" class="arrow"></span>
-      </button>
-      <div class="bottom-8 w-screen left-0 absolute text-white">
-        <div class="container mx-auto max-w-xl text-sm opacity-60">
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="assets/css/app.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+  <title id="title">祝你 2025 新年快乐！</title>
+</head>
+
+<body class="select-none w-screen h-screen overflow-hidden" ondragstart="return false;">
+  <!-- 背景音乐 -->
+  <audio id="bgMusic" src="assets/media/background-music.mp3" preload="auto" loop></audio>
+
+  <div class="relative main z-50 flex flex-col justify-center items-center"
+    style="background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(3.2px)" id="pre">
+    <div class="words text-white mb-6">点击按钮，查看 2025 年新年祝福</div>
+    <button onclick="startFireworks()" id="start-button">
+      V I E W
+      <div id="clip">
+        <div id="leftTop" class="corner"></div>
+        <div id="rightBottom" class="corner"></div>
+        <div id="rightTop" class="corner"></div>
+        <div id="leftBottom" class="corner"></div>
+      </div>
+      <span id="rightArrow" class="arrow"></span>
+      <span id="leftArrow" class="arrow"></span>
+    </button>
+    <div class="bottom-8 w-screen left-0 absolute text-white">
+      <div class="container mx-auto max-w-xl text-sm opacity-60">
       </div>
     </div>
-    <div class="main z-30 flex justify-center items-center text-white">
-      <div class="words" id="typed"></div>
-    </div>
-    <div class="main z-20" id="fireworks"></div>
-    <div class="main z-10 bg-black"></div>
-    <script src="https://npm.elemecdn.com/fireworks-js@2.x/dist/index.umd.js"></script>
-    <script
-      src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/typed.js/2.0.12/typed.min.js"
-      type="application/javascript"
-    ></script>
-    <script>
-      const container = document.querySelector("#fireworks");
-      const fireworks = new Fireworks.default(container, {
-        sound: {
-          enabled: true,
-          files: [
-            "assets/media/explosion0.mp3",
-            "assets/media/explosion1.mp3",
-            "assets/media/explosion2.mp3",
-            "assets/media/bgmusic.mp3",
-          ],
-        },
-      });
-      var typed_options = {
-        strings: [
-             "2025年新年快乐。",
-          "说我喜欢你，可能显得太轻浮。",
-          "说我爱你，可能显得太沉重。",
-          "那就说这句吧！",
-          "我想和你一起努力",
-          "我想和你有个未来。",
-          "我还是想起一句歌词",
-          "仍然我说我庆幸，你永远胜过别人",
-          "至少在我这里",
+  </div>
+  <div class="main z-30 flex justify-center items-center text-white">
+    <div class="words" id="typed"></div>
+  </div>
+  <div class="main z-20" id="fireworks"></div>
+  <div class="main z-10 bg-black"></div>
+  <script src="https://npm.elemecdn.com/fireworks-js@2.x/dist/index.umd.js"></script>
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/typed.js/2.0.12/typed.min.js"
+    type="application/javascript"></script>
+  <script>
+    const container = document.querySelector("#fireworks");
+    const fireworks = new Fireworks.default(container, {
+      sound: {
+        enabled: true,
+        files: [
+          "assets/media/explosion0.mp3",
+          "assets/media/explosion1.mp3",
+          "assets/media/explosion2.mp3",
         ],
-        typeSpeed: 160,
-      };
-      function startFireworks() {
-        document.getElementById("pre").style.display = "none";
-        fireworks.start();
-        var typed = new Typed("#typed", typed_options);
-      }
-    </script>
-  </body>
+      },
+    });
+    var typed_options = {
+      strings: [
+        "2025年新年快乐。",
+        "说我喜欢你，可能显得太轻浮。",
+        "说我爱你，可能显得太沉重。",
+        "那就说这句吧！",
+        "我想和你一起努力",
+        "我想和你有个未来。",
+        "我还是想起一句歌词",
+        "仍然我说我庆幸，你永远胜过别人",
+        "至少在我这里",
+      ],
+      typeSpeed: 160,
+    };
+    function startFireworks() {
+      document.getElementById("pre").style.display = "none";
+
+      // 启动烟花效果
+      fireworks.start();
+
+      // 播放背景音乐
+      const bgMusic = document.getElementById('bgMusic');
+      bgMusic.play().catch(err => {
+        console.log("背景音乐播放被阻止，可能需要用户交互", err);
+      });
+
+      // 启动打字效果
+      var typed = new Typed("#typed", typed_options);
+    }
+  </script>
+</body>
+
 </html>

@@ -16,6 +16,7 @@
   <!-- 背景音乐 -->
   <audio id="bgMusic" src="assets/media/bgmusic.mp3" preload="auto" loop></audio>
 
+  <!-- 启动界面 -->
   <div class="relative main z-50 flex flex-col justify-center items-center"
     style="background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(3.2px)" id="pre">
     <div class="words text-white mb-6">点击按钮，查看 2025 年新年祝福</div>
@@ -35,11 +36,41 @@
       </div>
     </div>
   </div>
+
+  <!-- 打字效果 -->
   <div class="main z-30 flex justify-center items-center text-white">
     <div class="words" id="typed"></div>
   </div>
+
+  <!-- 烟花容器 -->
   <div class="main z-20" id="fireworks"></div>
   <div class="main z-10 bg-black"></div>
+
+  <!-- 播放器 -->
+  <div class="player">
+    <div class="player__bar">
+      <div class="player__album">
+        <div class="player__albumImg active-song" data-author="Khalid" data-song="Location"
+          style="background-image: url(images/a1.png)">
+        </div>
+
+        <div class="player__controls">
+          <div class="player__play">
+            <svg class="icon play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+              <path
+                d="M51.109 30.335l-36-24A2 2 0 0 0 12 8v48a2.003 2.003 0 0 0 2 2c.388 0 .775-.113 1.109-.336l36-24a2 2 0 0 0 0-3.329z" />
+            </svg>
+            <svg class="icon pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path
+                d="M22.537 8.046h17.791c1.104 0 2.003.898 2.003 1.993v79.912a2.005 2.005 0 0 1-2.003 2.003h-17.79a2.005 2.005 0 0 1-2.003-2.003V10.04c0-1.095.898-1.993 2.002-1.993zM59.672 8.046h17.8c1.095 0 1.993.898 1.993 1.993v79.912a2.003 2.003 0 0 1-1.993 2.003h-17.8a1.997 1.997 0 0 1-1.993-2.003V10.04c0-1.095.889-1.993 1.993-1.993z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 脚本 -->
   <script src="https://npm.elemecdn.com/fireworks-js@2.x/dist/index.umd.js"></script>
   <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/typed.js/2.0.12/typed.min.js"
     type="application/javascript"></script>
@@ -55,6 +86,7 @@
         ],
       },
     });
+
     var typed_options = {
       strings: [
         "2025年新年快乐。",
@@ -69,6 +101,7 @@
       ],
       typeSpeed: 160,
     };
+
     function startFireworks() {
       document.getElementById("pre").style.display = "none";
 
@@ -77,11 +110,25 @@
 
       // 播放背景音乐
       const bgMusic = document.getElementById('bgMusic');
-    
+      bgMusic.play().catch(err => {
+        console.log("背景音乐播放失败：", err);
+      });
 
       // 启动打字效果
       var typed = new Typed("#typed", typed_options);
     }
+
+    // 播放器播放/暂停控制
+    const playerPlayButton = document.querySelector(".player__play");
+    const bgMusic = document.getElementById("bgMusic");
+
+    playerPlayButton.addEventListener("click", function () {
+      if (bgMusic.paused) {
+        bgMusic.play();
+      } else {
+        bgMusic.pause();
+      }
+    });
   </script>
 </body>
 
